@@ -11,7 +11,9 @@ export async function generateStaticParams() {
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
+    console.log("Debugging ProductPage:", { slug });
     const product = products[slug as keyof typeof products];
+    console.log("Product found:", !!product);
 
     if (!product) {
         return notFound();

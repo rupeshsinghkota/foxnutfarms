@@ -1,8 +1,10 @@
 "use client";
 
 import { submitToGoogleSheets } from '@/lib/submitForm';
-
-// ... (imports remain)
+import { useState, useRef } from 'react';
+import { X, CheckCircle2, ChevronRight, Loader2, MapPin, BadgeCheck, ShieldCheck } from 'lucide-react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function SampleKitModal({ isOpen, onClose, productName }: SampleKitModalProps) {
     const [step, setStep] = useState<Step>('details');
@@ -32,11 +34,11 @@ export default function SampleKitModal({ isOpen, onClose, productName }: SampleK
 
         // Prepare data for Google Sheets
         const formData = new FormData();
-        formData.append("Name", form.name);
-        formData.append("Phone", form.phone);
-        formData.append("Address", form.address); // Make sure to map this in instructions
-        formData.append("Product", productName || "General Sampler");
-        formData.append("Payment", "PAID_VIA_UPI"); // Static marker for now
+        formData.append("name", form.name);
+        formData.append("phone", form.phone);
+        formData.append("address", form.address);
+        formData.append("productInterest", productName || "General Sampler");
+        formData.append("paymentStatus", "PAID_VIA_UPI");
 
         await submitToGoogleSheets(formData);
 

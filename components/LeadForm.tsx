@@ -74,22 +74,22 @@ export default function LeadForm() {
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-earth">Your Name</label>
-                                    <input required name="Name" type="text" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30" placeholder="John Doe" />
+                                    <input required name="name" type="text" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30" placeholder="John Doe" />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-earth">Company Name</label>
-                                    <input required name="Company" type="text" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30" placeholder="Healthy Snacks Pvt Ltd" />
+                                    <input required name="company" type="text" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30" placeholder="Healthy Snacks Pvt Ltd" />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-earth">WhatsApp Number</label>
-                                <input required name="Phone" type="tel" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30" placeholder="+91 98765 43210" />
+                                <input required name="phone" type="tel" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30" placeholder="+91 98765 43210" />
                             </div>
 
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-earth">Purpose</label>
-                                <select name="Purpose" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30">
+                                <select name="purpose" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30">
                                     <option>Wholesale Purchase</option>
                                     <option>Export Inquiry</option>
                                     <option>Private Labeling</option>
