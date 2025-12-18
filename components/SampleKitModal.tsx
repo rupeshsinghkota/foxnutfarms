@@ -6,6 +6,14 @@ import { X, CheckCircle2, ChevronRight, Loader2, MapPin, BadgeCheck, ShieldCheck
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
+type Step = 'details' | 'payment' | 'success';
+
+interface SampleKitModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    productName?: string;
+}
+
 export default function SampleKitModal({ isOpen, onClose, productName }: SampleKitModalProps) {
     const [step, setStep] = useState<Step>('details');
     const [isLoading, setIsLoading] = useState(false);
