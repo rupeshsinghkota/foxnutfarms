@@ -30,11 +30,11 @@ export default function SampleKitModal({ isOpen, onClose, productName }: SampleK
 
         // Prepare data for Google Sheets
         const formData = new FormData();
-        formData.append("entry.NAME_ID", form.name);
-        formData.append("entry.PHONE_ID", form.phone);
-        formData.append("entry.ADDRESS_ID", form.address); // Make sure to map this in instructions
-        formData.append("entry.PRODUCT_ID", productName || "General Sampler");
-        formData.append("entry.PAYMENT_ID", "PAID_VIA_UPI"); // Static marker for now
+        formData.append("Name", form.name);
+        formData.append("Phone", form.phone);
+        formData.append("Address", form.address); // Make sure to map this in instructions
+        formData.append("Product", productName || "General Sampler");
+        formData.append("Payment", "PAID_VIA_UPI"); // Static marker for now
 
         await submitToGoogleSheets(formData);
 
