@@ -2,16 +2,20 @@
 
 import { useState } from 'react';
 import { Download, FileText, CheckCircle, Loader2 } from 'lucide-react';
+import { submitToGoogleSheets } from '@/lib/submitForm';
 
 export default function LeadForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate API call and download delay
+        const formData = new FormData(e.currentTarget);
+        await submitToGoogleSheets(formData);
+
+        // Simulate download delay for UX
         setTimeout(() => {
             setIsSubmitting(false);
             setIsSuccess(true);
@@ -23,7 +27,7 @@ export default function LeadForm() {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-        }, 2000);
+        }, 1000);
     };
 
     return (
@@ -70,22 +74,22 @@ export default function LeadForm() {
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-earth">Your Name</label>
-                                    <input required type="text" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30" placeholder="John Doe" />
+                                    <input required name="entry.NAME_ID" type="text" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30" placeholder="John Doe" />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-earth">Company Name</label>
-                                    <input required type="text" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30" placeholder="Healthy Snacks Pvt Ltd" />
+                                    <input required name="entry.COMPANY_ID" type="text" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30" placeholder="Healthy Snacks Pvt Ltd" />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-earth">WhatsApp Number</label>
-                                <input required type="tel" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30" placeholder="+91 98765 43210" />
+                                <input required name="entry.PHONE_ID" type="tel" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30" placeholder="+91 98765 43210" />
                             </div>
 
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-earth">Purpose</label>
-                                <select className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30">
+                                <select name="entry.PURPOSE_ID" className="w-full px-4 py-3 rounded-lg border border-earth/20 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-all bg-cream/30">
                                     <option>Wholesale Purchase</option>
                                     <option>Export Inquiry</option>
                                     <option>Private Labeling</option>

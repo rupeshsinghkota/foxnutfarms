@@ -1,17 +1,6 @@
-"use client";
+import { submitToGoogleSheets } from '@/lib/submitForm';
 
-import { useState, useRef } from 'react';
-import { X, CheckCircle2, ChevronRight, Loader2, MapPin, BadgeCheck, ShieldCheck } from 'lucide-react';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-
-type Step = 'details' | 'payment' | 'success';
-
-interface SampleKitModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    productName?: string;
-}
+// ... (imports remain)
 
 export default function SampleKitModal({ isOpen, onClose, productName }: SampleKitModalProps) {
     const [step, setStep] = useState<Step>('details');
@@ -36,9 +25,19 @@ export default function SampleKitModal({ isOpen, onClose, productName }: SampleK
         }, 800);
     };
 
-    const handlePaymentConfirm = () => {
+    const handlePaymentConfirm = async () => {
         setIsLoading(true);
-        // Simulate "Verifying Payment"
+
+        // Prepare data for Google Sheets
+        const formData = new FormData();
+        formData.append("entry.NAME_ID", form.name);
+        formData.append("entry.PHONE_ID", form.phone);
+        formData.append("entry.ADDRESS_ID", form.address); // Make sure to map this in instructions
+        formData.append("entry.PRODUCT_ID", productName || "General Sampler");
+        formData.append("entry.PAYMENT_ID", "PAID_VIA_UPI"); // Static marker for now
+
+        await submitToGoogleSheets(formData);
+
         setTimeout(() => {
             setIsLoading(false);
             setStep('success');
