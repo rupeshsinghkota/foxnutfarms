@@ -1,3 +1,5 @@
+"use client";
+
 import { submitToGoogleSheets } from '@/lib/submitForm';
 
 // ... (imports remain)
