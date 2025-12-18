@@ -37,7 +37,7 @@ export default function Footer() {
                         <li><Link href="/shipping-policy" className="hover:text-gold transition-colors">Shipping Policy</Link></li>
                         <li><Link href="/terms-of-service" className="hover:text-gold transition-colors">Terms of Service</Link></li>
                         <li><Link href="/privacy-policy" className="hover:text-gold transition-colors">Privacy Policy</Link></li>
-                        <li><a href="#" className="hover:text-gold transition-colors">Sitemap</a></li>
+                        <li><Link href="/sitemap.xml" className="hover:text-gold transition-colors">Sitemap</Link></li>
                     </ul>
                 </div>
 
