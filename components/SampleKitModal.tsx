@@ -22,8 +22,9 @@ export default function SampleKitModal({ isOpen, onClose, productName }: SampleK
     const [form, setForm] = useState({
         name: '',
         phone: '',
+        company: '',
         address: '',
-        pincode: ''
+        purpose: 'Sample Testing'
     });
 
     if (!isOpen) return null;
@@ -44,6 +45,8 @@ export default function SampleKitModal({ isOpen, onClose, productName }: SampleK
         const formData = new FormData();
         formData.append("name", form.name);
         formData.append("phone", form.phone);
+        formData.append("company", form.company);
+        formData.append("purpose", form.purpose);
         formData.append("address", form.address);
         formData.append("productInterest", productName || "General Sampler");
         formData.append("paymentStatus", "PAID_VIA_UPI");
@@ -125,6 +128,20 @@ export default function SampleKitModal({ isOpen, onClose, productName }: SampleK
                                             className="w-full p-4 bg-white rounded-xl border-2 border-earth/20 focus:border-gold focus:outline-none transition-colors text-earth placeholder:text-earth/40"
                                             value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
                                         />
+                                        <input
+                                            type="text" placeholder="Company Name"
+                                            className="w-full p-4 bg-white rounded-xl border-2 border-earth/20 focus:border-gold focus:outline-none transition-colors text-earth placeholder:text-earth/40"
+                                            value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })}
+                                        />
+                                        <select
+                                            className="w-full p-4 bg-white rounded-xl border-2 border-earth/20 focus:border-gold focus:outline-none transition-colors text-earth"
+                                            value={form.purpose} onChange={(e) => setForm({ ...form, purpose: e.target.value })}
+                                        >
+                                            <option>Sample Testing</option>
+                                            <option>Wholesale Purchase</option>
+                                            <option>Export Inquiry</option>
+                                            <option>Private Labeling</option>
+                                        </select>
                                         <textarea
                                             placeholder="Full Address with Pincode" rows={3}
                                             className="w-full p-4 bg-white rounded-xl border-2 border-earth/20 focus:border-gold focus:outline-none transition-colors text-earth placeholder:text-earth/40"
@@ -138,7 +155,7 @@ export default function SampleKitModal({ isOpen, onClose, productName }: SampleK
                                             <span className="text-2xl font-bold">₹499</span>
                                         </div>
                                         <button
-                                            disabled={!form.name || !form.phone || !form.address || isLoading}
+                                            disabled={!form.name || !form.phone || !form.company || !form.address || isLoading}
                                             onClick={handleNext}
                                             className="bg-earth text-cream px-8 py-3 rounded-xl font-bold hover:bg-gold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                                         >
